@@ -29,12 +29,12 @@ WITH
     FROM
       `bigquery-public-data.thelook_ecommerce.orders`
     WHERE
-      DATE_DIFF(CURRENT_DATE(), DATE(created_at), YEAR) = 0
+      DATE_DIFF(CURRENT_DATE(), DATE(created_at), YEAR) = 1
   ),
   user_order_summary AS (
     SELECT
       oi.user_id,
-      (total_returns * 1.0 / total_orders) AS product_return_rate_last_year,
+      total_returns / total_orders AS product_return_rate_last_year,
       SUM(sale_price) AS total_purchase_last_year
     FROM
       `bigquery-public-data.thelook_ecommerce.order_items` oi
