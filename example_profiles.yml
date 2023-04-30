@@ -1,0 +1,15 @@
+feats_dbt:
+  outputs:
+    dev:
+      dataset: dbt_segmentation_feats
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      location: US
+      method: service-account
+      priority: interactive
+      project: my_project
+      threads: 2
+      type: bigquery
+      # keyfile: /path/to/home/.dbt/bigquery_keyfile.json  # for dev
+      keyfile: /opt/keyfile.json
+  target: dev
