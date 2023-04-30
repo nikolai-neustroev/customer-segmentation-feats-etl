@@ -26,4 +26,10 @@ with DAG(
         dag=dag,
     )
 
-    dbt_run
+    dbt_test = BashOperator(
+        task_id="dbt_test",
+        bash_command="cd /opt/dbt/feats_dbt && dbt test",
+        dag=dag,
+    )
+
+    dbt_run >> dbt_test
