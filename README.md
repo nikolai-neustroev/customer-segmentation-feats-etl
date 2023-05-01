@@ -5,6 +5,14 @@ The project utilizes Docker for containerization, ensuring a smooth and consiste
 
 Here's a step-by-step instruction for setting up and running your customer-segmentation-feats-etl project using Airflow and dbt:
 
+### Prerequisites
+You need to have an active BigQuery project and a service account with following roles:
+- BigQuery Connection Service Agent
+- BigQuery Data Editor
+- BigQuery Data Viewer
+- BigQuery Job User
+- BigQuery User
+
 ### Step 1: Create .env file
 Create a new file named `.env` in the root directory of your project (customer-segmentation-feats-etl). 
 You may use `example.env` as an example.
