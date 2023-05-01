@@ -3,6 +3,9 @@ WITH
     SELECT
       id as user_id,
       age,
+      gender,
+      traffic_source,
+      created_at as profile_creation_timestamp,
       country,
       state,
       latitude,
@@ -90,6 +93,9 @@ WITH
 SELECT
   ub.user_id,
   ub.age,
+  ub.gender,
+  ub.traffic_source,
+  ub.profile_creation_timestamp,
   ub.country,
   ub.state,
   und.nearest_distribution_center,
