@@ -69,6 +69,23 @@ WITH
       user_nearest_dc
     WHERE
       nearest_dc_rank = 1
+  ),
+  user_purchase_summary_all_time AS (
+    SELECT
+      oi.user_id,
+      COUNT(o.order_id) AS total_orders_all_time,
+      SUM(sale_price) / COUNT(o.order_id) AS average_purchase_value,
+      DATE_DIFF(CURRENT_DATE(), DATE(MIN(o.created_at)), DAY) / COUNT(o.order_id) AS purchase_frequency,
+      DATE_DIFF(CURRENT_DATE(), DATE(MAX(o.created_at)), DAY) AS days_since_last_purchase
+    FROM
+      `bigquery-public-data.thelook_ecommerce.order_items` oi
+    INNER JOIN
+      `bigquery-public-data.thelook_ecommerce.orders` o
+    ON
+      oi.user_id = o.user_id
+      AND oi.order_id = o.order_id
+    GROUP BY
+      oi.user_id
   )
 SELECT
   ub.user_id,
@@ -81,7 +98,10 @@ SELECT
     WHEN uos.total_purchase_last_year <= 50 THEN 'Level 1'
     WHEN uos.total_purchase_last_year > 50 AND uos.total_purchase_last_year <= 150 THEN 'Level 2'
     ELSE 'Level 3'
-  END AS customer_profit_level_last_year
+  END AS customer_profit_level_last_year,
+  upsat.average_purchase_value,
+  upsat.purchase_frequency,
+  upsat.days_since_last_purchase
 FROM
   users_base ub
 JOIN
@@ -92,3 +112,7 @@ JOIN
   user_nearest_dc_filtered und
 ON
   ub.user_id = und.user_id
+JOIN
+  user_purchase_summary_all_time upsat
+ON
+  ub.user_id = upsat.user_id
