@@ -68,3 +68,22 @@ models:
           - dbt_utils.accepted_range:
               min_value: 0
           - not_null
+
+      - name: gender
+        description: gender from thelook_ecommerce.users
+        tests:
+          - accepted_values:
+              values: ['M', 'F']
+          - not_null
+
+      - name: traffic_source
+        description: traffic source from thelook_ecommerce.users
+        tests:
+          - accepted_values:
+              values: ['Search', 'Organic', 'Email', 'Facebook', 'Display']
+          - not_null
+
+      - name: profile_creation_timestamp
+        description: profile creation timestamp from thelook_ecommerce.users
+        tests:
+          - not_null
