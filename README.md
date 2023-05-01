@@ -11,29 +11,43 @@ You may use `example.env` as an example.
 Add the required variables to the file.
 Make sure to replace examples with the appropriate paths on your system.
 
-### Step 2: Build Docker images
+### Step 2: Install dependencies
+Install Python dependencies in a virtual environment.
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+You also need to install dbt dependencies.
+```
+cd feats_dbt
+dbt deps
+cd ..
+```
+
+### Step 3: Build Docker images
 Open a terminal and navigate to the root directory of your project. Run the following command to build the Docker images:
 ```
 docker compose build
 ```
 
-### Step 3: Run Docker containers
+### Step 4: Run Docker containers
 After building the images, run the following command to start the Docker containers:
 ```
 docker compose up
 ```
 This command will start the Airflow webserver, scheduler, and the PostgreSQL database.
 
-### Step 4: Access Airflow webserver
+### Step 5: Access Airflow webserver
 Open your web browser and navigate to [0.0.0.0:8080](0.0.0.0:8080). 
 This will open the Airflow webserver interface, where you can see your DAGs and manage your workflows.
 
-### Step 5: Run the DAG
+### Step 6: Run the DAG
 Find the `feats_dbt_weekly_run` DAG in the list of available DAGs. 
 Click the "play" button next to the DAG to trigger a manual run. 
 This will start the DAG, and you can monitor its progress through the Airflow web interface.
 
-### Step 6: Check the table in BigQuery
+### Step 7: Check the table in BigQuery
 After completing the DAG run, log in to your Google Cloud Platform account and navigate to the BigQuery console. 
 Check the dataset and table specified in your dbt project configuration to verify that the expected data has been processed and loaded correctly.
 
