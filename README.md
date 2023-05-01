@@ -59,4 +59,7 @@ This will start the DAG, and you can monitor its progress through the Airflow we
 After completing the DAG run, log in to your Google Cloud Platform account and navigate to the BigQuery console. 
 Check the dataset and table specified in your dbt project configuration to verify that the expected data has been processed and loaded correctly.
 
+The final table should look like this:
+![my_project.dbt_segmentation_feats.customer_segmentation_features](https://user-images.githubusercontent.com/38642966/235524476-e14040c9-5111-42f3-bd5d-d08dc89600de.png)
+
 Feel free to ask for assistance if you encounter any issues or have any questions during this process.
