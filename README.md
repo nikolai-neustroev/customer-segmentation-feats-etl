@@ -1,6 +1,6 @@
 # customer-segmentation-feats-etl
 The customer-segmentation-feats-etl project is a data pipeline designed to process and transform customer segmentation data using Apache Airflow and dbt. 
-It automates customer data's weekly extraction, transformation, and loading (ETL) into Google BigQuery. 
+It automates customer data's weekly extraction, transformation, and loading (ELT) into Google BigQuery. 
 The project utilizes Docker for containerization, ensuring a smooth and consistent execution environment across different platforms.
 
 Here's a step-by-step instruction for setting up and running your customer-segmentation-feats-etl project using Airflow and dbt:
